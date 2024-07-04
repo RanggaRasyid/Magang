@@ -14,6 +14,11 @@
             align-items: center;
             margin-top: 50px;
         }
+        .carousel-inner img {
+            object-fit: cover; /* Menyesuaikan gambar agar tidak terdistorsi */
+            max-height: 780px; /* Anda bisa menyesuaikan ini sesuai kebutuhan */
+        }
+
     </style>
 </head>
 
@@ -30,7 +35,12 @@
 
     <nav class="navbar navbar-expand-lg" style="background-color: #b1d6c4;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Data Mahasiswa Magang</a>
+            <div class="nav-item">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('background/logo-jsh.png') }}" style="width: 100px; max-width: 100px;">
+                </a>
+                <a class="navbar-brand m-3" href="{{ url('/')}}">Data Mahasiswa Magang</a>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
