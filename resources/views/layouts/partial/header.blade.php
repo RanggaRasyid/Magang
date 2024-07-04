@@ -57,11 +57,6 @@
                             <button type="button" class="btn btn-success m-2">Register</button>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('beranda') }}">
-                            <button type="button" class="btn btn-success m-2">Beranda</button>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
