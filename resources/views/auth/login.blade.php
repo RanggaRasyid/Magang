@@ -1,6 +1,5 @@
-@extends('layouts.partial.template')
-
-@section('content')
+@include('layouts.partial.header')
+{{-- @section('content') --}}
 <div class="container-fluid centered-container">
     <h4>Silahkan Login</h4>
 </div>
@@ -73,4 +72,4 @@
         </div>
     </div>
 </div>
-@endsection
+{{-- @endsection --}}

@@ -9,7 +9,7 @@
             <div class="col-md-4">
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled">
-                    <li><a href="https://mail.google.com/mail" target="_blank" class="text-white">
+                    <li><a class="text-white">
                         <span>Email : saberhoaks@jabarprov.go.id</span>
                         </a>
                     </li>

@@ -3,7 +3,7 @@
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner mt-2">
+            <div class="carousel-inner mt-1">
                 <div class="carousel-item active">
                     <img src="{{ asset('background/faktanya.jpeg') }}" class="d-block w-100" alt="...">
                 </div>
