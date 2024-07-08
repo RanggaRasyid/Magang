@@ -10,7 +10,7 @@
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled">
                     <li><a class="text-white">
-                        <span>Email : saberhoaks@jabarprov.go.id</span>
+                            <span>Email : saberhoaks@jabarprov.go.id</span>
                         </a>
                     </li>
                     <li><a href="#" class="text-white">+1 234 567 890</a></li>
@@ -19,9 +19,10 @@
             <div class="col-md-4">
                 <h5>Follow Us</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white">Facebook</a></li>
-                    <li><a href="#" class="text-white">Twitter</a></li>
-                    <li><a href="#" class="text-white">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/official.jabarsaberhoaks" class="text-white">Facebook</a></li>
+                    <li><a href="https://x.com/jabarsaberhoaks" class="text-white">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/jabarsaberhoaks/" class="text-white">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/gen_lawaks/" class="text-white">Gen_Lawaks</a></li>
                 </ul>
             </div>
         </div>
