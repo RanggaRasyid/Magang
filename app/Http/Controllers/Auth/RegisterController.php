@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -49,13 +50,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'Tempat_Lahir' => ['required', 'string'],
-            'Tanggal_Lahir' => ['required', 'date'],
-            'Fakultas_Jurusan' => ['required', 'string', 'max:255'],
-            'Alamat' => ['required', 'string', 'max:255'],
-            'Asal_Kampus' => ['required', 'string', 'max:255'],
-            'Akun_Media_Sosial' => ['required', 'string', 'max:255'],
-            'Nomor_Handphone' => ['required', 'numeric', 'digits_between:10,15'],
+            'name' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'integer', 'min:8'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -69,18 +65,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'Tempat_Lahir' => $data['Tempat_Lahir'],
-            'Tanggal_Lahir' => $data['Tanggal_Lahir'],
-            'Fakultas_Jurusan' => $data['Fakultas_Jurusan'],
-            'Alamat' => $data['Alamat'],
-            'Asal_Kampus' => $data['Asal_Kampus'],
-            'Akun_Media_Sosial' => $data['Akun_Media_Sosial'],
-            'Nomor_Handphone' => $data['Nomor_Handphone'],
-            'password' => Hash::make($data['password']),
+        $mahasiswa = Mahasiswa::create([
+            'nim' => $data['nim'],
+            'namamhs' => $data['name'], 
+            'emailmhs' => $data['email'], 
         ]);
 
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'nim' => $data['nim'],
+            'password' => Hash::make($data['password']),
+        ]);
+       
+        // $user->mahasiswa()->save($mahasiswa);
+        return $user;
     }
 }

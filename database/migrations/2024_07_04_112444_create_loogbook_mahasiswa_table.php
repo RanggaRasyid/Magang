@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('loogbook_mahasiswa', function (Blueprint $table) {
             $table->uuid('id_loogbook');
-            $table->integer('nim');
+            $table->string('nim');
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->string('nama');
             $table->text('deskripsi', 255);

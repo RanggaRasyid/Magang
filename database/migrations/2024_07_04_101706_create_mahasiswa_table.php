@@ -14,20 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
-            $table->integer('nim')->primary();
+            $table->string('nim', 32)->primary();
             $table->string('namamhs', 255);
-            $table->string('alamatmhs', 255);
+            $table->string('alamatmhs', 255)->nullable();
             $table->string('emailmhs', 255);
-            $table->string('nohpmhs', 15);
+            $table->string('nohpmhs', 15)->nullable();
             $table->string('jeniskelamin', 255)->nullable();
             $table->string('agama', 255)->nullable();
-            $table->string('tempatlahirmhs', 255);
-            $table->date('tanggallahirmhs');
-            $table->string('posisi', 100);
-            $table->string('namauniv', 100);
-            $table->string('fakultas', 100);
-            $table->string('jurusan', 100);
-            $table->string('foto', 255);
+            $table->string('tempatlahirmhs', 255)->nullable();
+            $table->date('tanggallahirmhs')->nullable();
+            $table->string('posisi', 100)->nullable();
+            $table->string('namauniv', 100)->nullable();
+            $table->string('fakultas', 100)->nullable();
+            $table->string('jurusan', 100)->nullable();
+            $table->string('foto', 255)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
