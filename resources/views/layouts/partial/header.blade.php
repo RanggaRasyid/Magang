@@ -47,6 +47,10 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @php
+            $user = Auth::user();
+            @endphp
+            @if (!$user)
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -61,6 +65,7 @@
                     </li>
                 </ul>
             </div>
+            @endif
         </div>
     </nav>
 </body>

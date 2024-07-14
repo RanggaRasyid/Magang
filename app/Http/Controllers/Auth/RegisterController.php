@@ -77,6 +77,8 @@ class RegisterController extends Controller
             'nim' => $data['nim'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->assignRole('mahasiswa');
        
         // $user->mahasiswa()->save($mahasiswa);
         return $user;
