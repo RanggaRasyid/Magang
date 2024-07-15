@@ -23,3 +23,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/super-admin', [App\Http\Controllers\Auth\SuperAdminController::class, 'index'])->middleware(['auth'])->name('admin.dashboard');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
+
+Route::get('/mahasiswa', function () {
+    return view('mahasiswa.dashboard');
+});
+Route::get('/profile', function () {
+    return view('mahasiswa.profile_mahasiswa');
+});
+Route::get('/loogbook', function () {
+    return view('mahasiswa.loogbook');
+});
