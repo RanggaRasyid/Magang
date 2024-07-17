@@ -59,137 +59,122 @@
             </div>
             <hr class="my-0" />
             <div class="card-body">
-            <form id="formAccountSettings" method="POST" onsubmit="return false">
+            <form id="#" method="POST" onsubmit="return false">
                 <div class="row">
                 <div class="mb-3 col-md-6">
                     <label for="name" class="form-label">Name</label>
-                    <input
-                    class="form-control"
-                    type="text"
-                    id="name"
-                    name="name"
-                    value="John"
-                    autofocus
-                    />
+                    <input class="form-control" type="text" id="name" name="name" value="{{$mahasiswa->namamhs}}" disabled autofocus/>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="nim" class="form-label">NIM</label>
-                    <input class="form-control" type="text" name="nim" id="nim" value="Doe" />
+                    <input class="form-control" type="text" name="nim" id="nim" value="{{$mahasiswa->nim}}" disabled/>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="email" class="form-label">E-mail</label>
-                    <input
-                    class="form-control"
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="jsh@example.com"
-                    />
+                    <input class="form-control" type="text" id="email" name="email" placeholder="" value="{{$mahasiswa->emailmhs}}" disabled/>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="division" class="form-label">Division</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="organization"
-                    name="organization"
-                    value="Content Creator"
-                    />
+                    <input type="text" class="form-control" id="division" disabled name="division" value="{{$mahasiswa?->posisi??''}}"/>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="religion" class="form-label">Religion</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="religion"
-                    name="religion"
-                    value="islamic"
-                    />
+                    <input type="text" class="form-control" id="religion" name="religion" disabled  value="{{$mahasiswa?->agama??''}}"  />
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="univ" class="form-label">University Origin</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="univ"
-                    name="univ"
-                    value="Telkom University"
-                    />
+                    <input type="text" class="form-control" id="univ"  name="univ" disabled value="{{$mahasiswa?->namauniv??''}}" />
                 </div>
                 <div class="mb-3 col-md-6">
-                    <label for="fakultas" class="form-label">Home faculty</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="fakultas"
-                    name="fakultas"
-                    value="Informatika"
-                    />
+                    <label for="fakultas" class="form-label">Home Faculty</label>
+                    <input type="text" class="form-control" id="fakultas" name="fakultas" disabled disabled value="{{$mahasiswa?->fakultas??''}}" />
                 </div>
                 <div class="mb-3 col-md-6">
-                    <label for="jurusan" class="form-label">Study program</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="jurusan"
-                    name="jurusan"
-                    value="Infromatika"
-                    />
+                    <label for="prodi" class="form-label">Study Program</label>
+                    <input type="text" class="form-control" id="prodi" name="prodi" disabled value="{{$mahasiswa?->jurusan??''}}" />
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="place" class="form-label">Place of birth</label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="place"
-                    name="place"
-                    value="Bandung"
-                    />
+                    <input type="text" class="form-control" id="place"  name="place" disabled value="{{$mahasiswa?->tempatlahirmhs??''}}" />
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="birth" class="form-label">date of birth</label>
-                    <input
-                    type="date"
-                    class="form-control"
-                    id="birth"
-                    name="birth"
-                    value="21-01-2004"
-                    />
+                    <input type="text" class="form-control" id="birth" name="birth" disabled value="{{$mahasiswa?->tanggallahirmhs??''}}" />
                 </div>
                 <div class="mb-3 col-md-6">
                     <label class="form-label" for="phoneNumber">Phone Number</label>
                     <div class="input-group input-group-merge">
-                    <span class="input-group-text">INA (+62)</span>
-                    <input
-                        type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        class="form-control"
-                        placeholder="802 555 0111"
-                    />
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" disabled placeholder="802 555 0111" value="{{$mahasiswa?->nohpmhs??''}}"/>
                     </div>
                 </div>
                 <div class="mb-3 col-md-6">
                     <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
+                    <input type="text" class="form-control" id="address" name="address" disabled placeholder="Address" value="{{$mahasiswa?->alamatmhs??''}}"/>
                 </div>
-                
                 <div class="mb-3 col-md-6">
                     <label for="gender" class="form-label">Gender</label>
-                    <input type="text" class="form-control" id="gender" name="gender" placeholder="gender" />
+                    <input type="text" class="form-control" id="gender" name="gender" disabled placeholder="gender" value="{{$mahasiswa?->jeniskelamin??''}}" />
                 </div>
-                
                 </div>
                 <div class="mt-2">
-                <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                <button type="button" class="btn btn-success m-0" data-id="{{$mahasiswa?->nim??''}}" data-bs-toggle="modal" onclick="edit($(this))" data-bs-target="#modalEditProfile">Edit Profile</button>
                 </div>
             </form>
             </div>
             <!-- /Account -->
         </div>
-        
- 
-</div>
-<!-- / Content -->
+    </div>
+    @include('mahasiswa.modal.modal_profile')
+@endsection
+@section('page_script')
+<script>
+function edit(e) {
+      let id = e.attr('data-id');
+      var url = `{{ url('mahasiswa/profile/') }}/${id}`;
+      let action = `{{ url('mahasiswa/profile/update/') }}/${id}`;
+
+      $.ajax({
+          type: 'GET',
+          url: url,
+          success: function (response) {
+              $("#modal-button").html("Update Data");
+              $('#modalEditProfile form').attr('action', action);
+              $('#division').val(response.posisi);
+              $('#religion').val(response.agama);
+              $('#univ').val(response.namauniv);
+              $('#fakultas').val(response.fakultas);
+              $('#prodi').val(response.jurusan);
+              $('#place').val(response.tempatlahirmhs);
+              $('#birth').val(response.tanggallahirmhs);
+              $('#phoneNumber').val(response.nohpmhs);
+              $('#address').val(response.alamatmhs);
+              $('.invalid-feedback').removeClass('d-block');
+              $('.form-control').removeClass('is-invalid');
+          }
+      });
+      $('#modalEditProfile form').on('submit', function(event) {
+            event.preventDefault();
+            let form = $(this);
+            $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(response) {
+                Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: 'Data berhasil diperbarui',
+                });
+            },
+                error: function(response) {
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: 'Terjadi kesalahan saat memperbarui data',
+                    });
+                }
+            });
+        });
+    }
+</script>
 @endsection

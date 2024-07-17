@@ -49,9 +49,12 @@
 
 <!-- Main JS -->
 <script src="../../assets/js/main.js"></script>
-
+<script src="js/content.js"></script>
+{{-- <script src="{{ asset('js/content.js') }}"></script> --}}
 <!-- Page JS -->
 <script src="../../assets/js/dashboards-analytics.js"></script>
+<script src="{{ asset('assets/js/form-wizard-numbered.js') }}"></script>
+<script src="{{ asset('assets/js/form-wizard-validation.js') }}"></script>
 @yield('page_script')
 </body>
 </html>

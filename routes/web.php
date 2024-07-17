@@ -24,12 +24,21 @@ Route::get('/super-admin', [App\Http\Controllers\Auth\SuperAdminController::clas
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 
-Route::get('/mahasiswa', function () {
-    return view('mahasiswa.dashboard');
+Route::prefix('mahasiswa')->group(function () {
+    Route::get('/', [App\Http\Controllers\ProfileMahasiswaController::class, 'index'])->name('dashboard.mahasiswa.index');
+    Route::prefix('profile')->group(function () {
+        Route::get('/{id}', [App\Http\Controllers\ProfileMahasiswaController::class, 'profile'])->name('profile.mahasiswa.index');
+        Route::post('/update/{id}', [App\Http\Controllers\ProfileMahasiswaController::class, 'update'])->name('update.mahasiswa');
+    });
+
 });
-Route::get('/profile', function () {
-    return view('mahasiswa.profile_mahasiswa');
-});
+
+// Route::get('/mahasiswa', function () {
+//     return view('mahasiswa.dashboard');
+// });
+// Route::get('/profile', function () {
+//     return view('mahasiswa.profile_mahasiswa');
+// });
 Route::get('/loogbook', function () {
     return view('mahasiswa.loogbook');
 });

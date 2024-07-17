@@ -20,7 +20,7 @@ class Mahasiswa extends Model
         'jeniskelamin',
         'agama', 
         'tempatlahirmhs',
-        'anggallahirmhs',
+        'tanggallahirmhs',
         'posisi',
         'namauniv',
         'fakultas',
