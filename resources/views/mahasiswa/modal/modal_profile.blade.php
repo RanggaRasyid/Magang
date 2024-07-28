@@ -97,7 +97,7 @@
                 </div>
                 <div class="mb-3 col-md-6">
                   <label class="form-label" for="phoneNumber">Phone Number</label>
-                  <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="" autofocus />
+                  <input  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="" autofocus />
                 </div>
                 <div class="mb-3 col-md-4 form-input">
                   <label for="address" class="form-label">Address <span style="color: red;">*</span></label>
