@@ -43,6 +43,9 @@ Route::prefix('/mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->grou
 // Route::get('/profile', function () {
 //     return view('mahasiswa.profile_mahasiswa');
 // });
+Route::get('/presensi', function () {
+    return view('mahasiswa.presensi');
+});
 Route::get('/loogbook', function () {
     return view('mahasiswa.loogbook');
 });
