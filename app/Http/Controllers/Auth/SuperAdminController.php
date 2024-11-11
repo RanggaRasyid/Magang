@@ -24,6 +24,6 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return redirect()->route('admin.dashboard');
+        return view('admin.admin_dashboard');
     }
 }

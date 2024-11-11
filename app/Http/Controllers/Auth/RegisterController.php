@@ -79,8 +79,13 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('mahasiswa');
-       
+    //    dd($user);
         // $user->mahasiswa()->save($mahasiswa);
         return $user;
     }
+    protected function redirectPath()
+    {
+        return '/mahasiswa';
+    }
+
 }

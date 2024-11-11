@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,10 +16,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $superadmin = User::firstOrNew([
+        $superadmin = User::firstOrNew(
+        [
             'email' => 'superadmin@demo.test',
-            'name' => 'SuperAdmin'
-        ], [
+        ],
+            [
             'name' => 'Super Admin Role',
             'password' => bcrypt('12345678'),
         ]);

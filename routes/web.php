@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//landing-page
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('landing-page')->middleware('guest');
 
-Route::get('/', function () {
-    return view('layouts.dashboard');
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('guest');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/super-admin', [App\Http\Controllers\Auth\SuperAdminController::class, 'index'])->middleware(['auth'])->name('admin.dashboard');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 
-Route::prefix('mahasiswa')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::prefix('/super-admin')->middleware('can:read.only.superadmin')->group(function () {
+    Route::get('/', [App\Http\Controllers\Auth\SuperAdminController::class, 'index'])->name('admin.dashboard');
+    });
+});
+
+Route::prefix('/mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group(function () {
     Route::get('/', [App\Http\Controllers\ProfileMahasiswaController::class, 'index'])->name('dashboard.mahasiswa.index');
     Route::prefix('profile')->group(function () {
         Route::get('/{id}', [App\Http\Controllers\ProfileMahasiswaController::class, 'profile'])->name('profile.mahasiswa.index');

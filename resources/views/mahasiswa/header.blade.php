@@ -15,8 +15,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-
-    <title>Dashboard | Mahasiswa</title>
+    @can('read.only.superadmin')
+        <title>Dashboard | Administrator</title>
+    @endcan
+    @can('read.only.mahasiswa')
+        <title>Dashboard | Mahasiswa</title>
+    @endcan
 
     <meta name="description" content="" />
 
@@ -71,7 +75,7 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         <!-- Menu -->
-
+        
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="" class="app-brand-link">
@@ -90,6 +94,7 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
+            @can('read.only.mahasiswa')
             <!-- Apps & Pages -->
             <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Mahasiswa</span>
@@ -127,13 +132,38 @@
                     </li>
                 </ul>
             </li>
+            @endcan
+            @can('read.only.superadmin')
+            <!-- Apps & Pages -->
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Administrator JSH</span>
+            </li>
+            <li class="menu-item">
+              <a href="{{url('super-admin')}}" class="menu-link">
+                <i class="menu-icon ti ti-smart-home    "></i>
+                <div data-i18n="Dashboard">Dashboard</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-file"></i>
+                <div data-i18n="Presensi Mahasiswa">Presensi Mahasiswa</div>
+              </a>
+            </li>   
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-database"></i>
+                <div data-i18n="Master Mahasiswa">Master Mahasiswa</div>
+              </a>
+            </li>   
+            @endcan
+          </ul>
         </aside>
         <!-- / Menu -->
 
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
-
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
@@ -147,6 +177,11 @@
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
              
               <ul class="navbar-nav flex-row align-items-center ms-auto">
+                
+                @php
+                $user = Auth::user();
+                @endphp
+                <span class="badge bg-label-success mt-1">{{ $user->getRoleNames()->implode(', ') }}</span>
                 <!-- Style Switcher -->
                 <li class="nav-item me-2 me-xl-0">
                   <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
@@ -154,7 +189,6 @@
                   </a>
                 </li>
                 <!--/ Style Switcher -->
-
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -164,7 +198,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="{{url('profile')}}">
+                      <a class="dropdown-item">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
@@ -172,8 +206,8 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Mahasiswa</small>
+                            <span class="fw-semibold d-block">{{ ucwords($user->name) }}</span>
+                            <small class="text-muted">{{ ucwords($user->email) }}</small>
                           </div>
                         </div>
                       </a>
@@ -182,7 +216,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{url('profile')}}">
+                      <a class="dropdown-item" href="{{url('mahasiswa/profile', Auth::user()->nim)}}">
                         <i class="ti ti-user-check me-2 ti-sm"></i>
                         <span class="align-middle">My Profile</span>
                       </a>

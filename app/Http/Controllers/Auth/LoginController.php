@@ -42,9 +42,10 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->hasRole('superadmin')) {
-            return redirect()->route('admin.dashboard');
+            return view('admin.admin_dashboard');
         } else {
             return view('mahasiswa.dashboard');
         }
+        // return view('layouts.dashboard');
     }
 }
