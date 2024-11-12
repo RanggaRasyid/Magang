@@ -9,15 +9,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class LoogBoook extends Model
 {
-    use HasFactory, HasUuids, AuthenticableTrait;
+    use HasFactory, HasUuids;
+
     protected $table = 'loogbook_mahasiswa';
+
+    // Tentukan primary key menjadi 'id_loogbook'
+    protected $primaryKey = 'id_loogbook';
+
+    // Nonaktifkan auto-increment karena UUID tidak bersifat auto-increment
+    public $incrementing = false;
+
+    // Tentukan tipe kunci utama sebagai string (UUID)
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id_loogbook',
         'nim',
         'nama',
         'deskripsi'
     ];
-    public function nimmhs(){
-        return $this->belongsTo(Mahasiswa::class,'nim');
+
+    public function nimmhs()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'nim');
     }
 }

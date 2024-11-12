@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoogbookRequest;
 use App\Models\LoogBoook;
 use App\Models\Mahasiswa;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -18,7 +20,6 @@ class LoogBookController extends Controller
     public function show(){
         $loogbook = LoogBoook::with('nimmhs')->where('nim', Auth::user()->nim);
         $loogbook = $loogbook
-        // $loogbook = LoogBoook::orderBy('id_loogbook', 'asc')->get();
         ->orderBy('nim', 'asc')->get();
         return DataTables::of($loogbook)
         ->addIndexColumn()
@@ -35,7 +36,27 @@ class LoogBookController extends Controller
         ->make(true);
     }
 
-    public function store(){
-        
+    public function store(LoogbookRequest $request){
+        try {
+
+            $mahasiswa = Mahasiswa::where('nim', auth()->user()->nim)->first();
+            $loogbook = LoogBoook::create([
+                'nim' => $mahasiswa->nim,
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+                
+            ]);
+            return response()->json([
+                'error' => false,
+                'message' => 'Loogbook successfully Created!',
+                'modal' => '#modal-loogbook',
+                'table' => '#table-loogbook-mahasiswa'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }
