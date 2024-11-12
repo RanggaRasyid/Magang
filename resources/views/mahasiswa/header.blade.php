@@ -106,13 +106,13 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="{{url('loogbook')}}" class="menu-link">
+              <a href="{{url('mahasiswa/loogbook', Auth::user()->nim)}}"  class="menu-link">
                 <i class="menu-icon tf-icons ti ti-file"></i>
                 <div data-i18n="Loogbook">Loogbook</div>
               </a>
             </li>   
             <li class="menu-item">
-              <a href="{{url('presensi')}}" class="menu-link">
+              <a href="{{url('mahasiswa/presensi', Auth::user()->nim)}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-clock"></i>
                 <div data-i18n="Presensi">Presensi</div>
               </a>
@@ -151,13 +151,13 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{url('super-admin/presensi')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-file"></i>
                 <div data-i18n="Presensi Mahasiswa">Presensi Mahasiswa</div>
               </a>
             </li>   
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{url('super-admin/master-mahasiswa')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-database"></i>
                 <div data-i18n="Master Mahasiswa">Master Mahasiswa</div>
               </a>

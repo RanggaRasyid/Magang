@@ -25,27 +25,33 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::prefix('/super-admin')->middleware('can:read.only.superadmin')->group(function () {
     Route::get('/', [App\Http\Controllers\Auth\SuperAdminController::class, 'index'])->name('admin.dashboard');
+    
+        Route::prefix('/master-mahasiswa')->group(function () {
+            Route::get('/', [App\Http\Controllers\MasterMahasiswaiController::class, 'index'])->name('master.index');
+            Route::post('/show/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'show'])->name('master.show');
+        });
+        Route::prefix('/presensi')->group(function () {
+            Route::get('/', [App\Http\Controllers\MasterPresensiController::class, 'index'])->name('master.presensi.index');
+            Route::post('/show/{id}', [App\Http\Controllers\MasterPresensiController::class, 'show'])->name('master.presensi.show');
+        });
     });
 });
 
-Route::prefix('/mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group(function () {
+Route::prefix('mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group(function () {
     Route::get('/', [App\Http\Controllers\ProfileMahasiswaController::class, 'index'])->name('dashboard.mahasiswa.index');
-    Route::prefix('profile')->group(function () {
+    
+    Route::prefix('/profile')->group(function () {
         Route::get('/{id}', [App\Http\Controllers\ProfileMahasiswaController::class, 'profile'])->name('profile.mahasiswa.index');
         Route::post('/update/{id}', [App\Http\Controllers\ProfileMahasiswaController::class, 'update'])->name('update.mahasiswa');
     });
 
+    Route::prefix('/loogbook')->group(function() {
+        route::get('/{id}', [App\Http\Controllers\LoogBookController::class, 'index'])->name('loogbook');
+    });
+
+    Route::prefix('/presensi')->group(function() {
+        route::get('/{id}', [App\Http\Controllers\PresensiController::class, 'index'])->name('presensi');
+    });
+
 });
 
-// Route::get('/mahasiswa', function () {
-//     return view('mahasiswa.dashboard');
-// });
-// Route::get('/profile', function () {
-//     return view('mahasiswa.profile_mahasiswa');
-// });
-Route::get('/presensi', function () {
-    return view('mahasiswa.presensi');
-});
-Route::get('/loogbook', function () {
-    return view('mahasiswa.loogbook');
-});
