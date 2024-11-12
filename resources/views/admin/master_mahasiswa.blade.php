@@ -1,5 +1,9 @@
 @extends('mahasiswa.template')
 
+@section('meta_header')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('page_style')
 <link rel="stylesheet" href="../../app-assets/vendor/libs/sweetalert2/sweetalert2.css" />
 <style>
@@ -34,6 +38,7 @@
                             <tr>
                                 <th>NOMOR</th>
                                 <th style="min-width: 125px;">Nama Mahasiswa</th>
+                                <th>Email</th>
                                 <th>Universitas</th>
                                 <th>Jurusan</th>
                                 <th>Status</th>
@@ -85,12 +90,15 @@
         destroy: true,
         columns: [
             {
-                data: "nim",
-                name: "nim"
+                data: 'DT_RowIndex'
             },
             {
                 data: "namamhs",
                 name: "namamhs"
+            },
+            {
+                data: "emailmhs",
+                name: "emailmhs"
             },
             {
                 data: "namauniv",

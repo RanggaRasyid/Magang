@@ -30,9 +30,8 @@ class MasterMahasiswaiController extends Controller
             $icon = ($row->status) ? "ti-circle-x" : "ti-circle-check";
             $color = ($row->status) ? "danger" : "success";
 
-            $btn = "<a data-bs-toggle='modal' data-id='{$row->id_univ}' onclick=edit($(this)) class='btn-icon text-warning waves-effect waves-light'><i class='tf-icons ti ti-edit'></i>
-            <a data-status='{$row->status}' data-id='{$row->nim}' data-url='/super-admin/master-mahasiswa/status' class='btn-icon update-status text-{$color} waves-effect waves-light'><i class='tf-icons ti {$icon}'></i></a>";
-            // dd($row);
+            $btn = "<a data-bs-toggle='modal' data-id='{$row->nim}' onclick=edit($(this)) class='btn-icon text-warning waves-effect waves-light'><i class='tf-icons ti ti-edit'></i>
+            <a data-status='{$row->status}' data-id='{$row->nim}' data-url='master-mahasiswa/status' class='btn-icon update-status text-{$color} waves-effect waves-light'><i class='tf-icons ti {$icon}'></i></a>";
             return $btn;
         })
         ->rawColumns(['action', 'status'])
@@ -44,7 +43,7 @@ class MasterMahasiswaiController extends Controller
         //
     }
 
-    public function status($id)
+    public function status(String $id)
     {
         try {
             $mahasiswa = Mahasiswa::where('nim', $id)->first();
@@ -54,13 +53,13 @@ class MasterMahasiswaiController extends Controller
             return response()->json([
                 'error' => false,
                 'message' => 'Status Mahasiswa successfully Updated!',
-                'modal' => '#modal-mahasiswa',
                 'table' => '#table-master-mahasiswa'
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'error' => true,
                 'message' => $e->getMessage(),
+                
             ]);
         }
     }
