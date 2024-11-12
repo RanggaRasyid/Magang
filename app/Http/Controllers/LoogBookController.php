@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoogbookRequest;
 use App\Models\LoogBoook;
 use App\Models\Mahasiswa;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,9 @@ class LoogBookController extends Controller
         ->orderBy('nim', 'asc')->get();
         return DataTables::of($loogbook)
         ->addIndexColumn()
-        
+        ->editColumn('created_at', function ($row) {
+            return Carbon::parse($row->created_at)->format('d/m/y');
+        })
         ->addColumn('action', function ($row) {
             $icon = ($row->status) ? "ti-circle-x" : "ti-circle-check";
             $color = ($row->status) ? "danger" : "success";

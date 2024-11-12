@@ -32,7 +32,7 @@
                     <table class="table" id="table-loogbook-mahasiswa">
                         <thead>
                             <tr>
-                                <th>NOMOR</th>
+                                <th style="max-width:30px">NO</th>
                                 <th style="min-width: 125px;">Title</th>
                                 <th>Deskription</th>
                                 <th>Created-At</th>
@@ -73,7 +73,7 @@
             },
             {
                 data: "created_at",
-                name: "created_at"
+                name: "created_at",
             },
             {
                 data: "action",
