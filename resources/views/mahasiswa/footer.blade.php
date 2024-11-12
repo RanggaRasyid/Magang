@@ -9,7 +9,8 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="fw-semibold">Fauzi Aulia</a>
+          {{-- , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="fw-semibold">Fauzi Aulia</a> --}}
+          , made with ❤️ by <a href="#" target="_blank" class="fw-semibold">Fauzi Aulia</a>
         </div>
       </div>
     </div>
@@ -49,7 +50,7 @@
 
 <!-- Main JS -->
 <script src="../../assets/js/main.js"></script>
-<script src="js/content.js"></script>
+<script src="../../js/content.js"></script>
 {{-- <script src="{{ asset('js/content.js') }}"></script> --}}
 <!-- Page JS -->
 <script src="../../assets/js/dashboards-analytics.js"></script>
