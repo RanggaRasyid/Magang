@@ -28,7 +28,12 @@ Route::middleware('auth')->group(function () {
     
         Route::prefix('/master-mahasiswa')->group(function () {
             Route::get('/', [App\Http\Controllers\MasterMahasiswaiController::class, 'index'])->name('master.index');
-            Route::post('/show/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'show'])->name('master.show');
+            Route::get('/show', [App\Http\Controllers\MasterMahasiswaiController::class, 'show'])->name('master.show');
+            Route::post('/status/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'status'])->name('master.status');
+            // Route::get('/edit/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'edit'])->name('master.edit');
+            // Route::post('/update/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'update'])->name('master.update');
+            // Route::post('/store/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'store'])->name('master.store');
+
         });
         Route::prefix('/presensi')->group(function () {
             Route::get('/', [App\Http\Controllers\MasterPresensiController::class, 'index'])->name('master.presensi.index');
