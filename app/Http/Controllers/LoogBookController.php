@@ -10,11 +10,15 @@ class LoogBookController extends Controller
 {
     public function index(){
         
-        return view('mahasiswa.loogbook');
+        return view('mahasiswa.loogbook.loogbook');
     }
 
     public function show(){
         $mahasiswa = Mahasiswa::where('nim', Auth::user()->nim)->first();
-        // return view('mahasiswa.loogbook', compact('mahasiswa'));
+        return $mahasiswa;
+    }
+
+    public function store(){
+        
     }
 }

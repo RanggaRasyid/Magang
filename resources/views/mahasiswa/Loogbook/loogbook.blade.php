@@ -19,17 +19,7 @@
         </h4>
     </div>
     <div class="col-md-2 col-12 mb-3 ps-5 d-flex justify-content-between">
-        {{-- <select class="select2 form-select" data-placeholder="Pilih Tahun Ajaran">
-            <option value="1">2023/2024 Genap</option>
-            <option value="2">2023/2024 Ganjil</option>
-            <option value="3">2022/2023 Genap</option>
-            <option value="4">2022/2023 Ganjil</option>
-            <option value="5">2021/2022 Genap</option>
-            <option value="6">2021/2022 Ganjil</option>
-        </select> --}}
     </div>
-    {{-- <button class="btn btn-success waves-effect waves-light" data-bs-toggle="offcanvas" data-bs-target="#modalSlide"><i class="tf-icons ti ti-filter"></i>
-    </button> --}}
     <div class="col-md-2 col-12 text-end">
         <button class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modalTambahMitra">Add Activity</button>
     </div>
@@ -39,12 +29,13 @@
         <div class="tab-content mt-4">
             <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
                 <div class="card-datatable table-responsive">
-                    <table class="table" id="table-kelola-mitra1">
+                    <table class="table" id="table-loogbook">
                         <thead>
                             <tr>
                                 <th>NOMOR</th>
                                 <th style="min-width: 125px;">Title</th>
                                 <th>Deskription</th>
+                                <th>Created-At</th>
                                 <th>AKSI</th>
                             </tr>
                         </thead>
@@ -82,47 +73,62 @@
 <script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="../../app-assets/js/forms-extras.js"></script>
 <script>
-    var jsonData = [{
-            "nomor": "1",
-            "title": "Editing Video",
-            "deskription": "Melakukan Editing Video",
-            "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra'><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-        },
-        {
-            "nomor": "2",
-            "title": "Tidur",
-            "deskription": "Jadwal Kegiatan Sehari-hari yang Kreatif dari Bangun Tidur Sampai Tidur Lagi",
-            "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-        },
-        {
-            "nomor": "3",
-           "title": "Melakukan Aktifitas biasa",
-            "deskription": "Melakukan Editing Video",
-            "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-        },
-        {
-            "nomor": "4",
-            "title": "Editing Video",
-            "deskription": "Melakukan Editing Video",
-            "aksi": "<a class='btn-icon text-warning waves-effect waves-light'  data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-        }
-    ];
+    // var jsonData = [{
+    //         "nomor": "1",
+    //         "title": "Editing Video",
+    //         "deskription": "Melakukan Editing Video",
+    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra'><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
+    //     },
+    //     {
+    //         "nomor": "2",
+    //         "title": "Tidur",
+    //         "deskription": "Jadwal Kegiatan Sehari-hari yang Kreatif dari Bangun Tidur Sampai Tidur Lagi",
+    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
+    //     },
+    //     {
+    //         "nomor": "3",
+    //        "title": "Melakukan Aktifitas biasa",
+    //         "deskription": "Melakukan Editing Video",
+    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
+    //     },
+    //     {
+    //         "nomor": "4",
+    //         "title": "Editing Video",
+    //         "deskription": "Melakukan Editing Video",
+    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light'  data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
+    //     }
+    // ];
 
-    var table = $('#table-kelola-mitra1').DataTable({
-        "data": jsonData,
+    var table = $('#table-loogbook').DataTable({
+        // "data": jsonData,
+        ajax: '{{ url("mahasiswa/loogbook/show/id")}}',
+        serverSide: false,
+        processing: true,
+        deferRender: true,
+        type: 'GET',
+        destroy: true,
         columns: [{
-                data: "nomor"
+                data: "DT_RowIndex"
             },
             {
-                data: "title"
+                data: "title",
+                name: "nama"
             },
             {
-                data: "deskription"
+                data: "deskription",
+                nama: "deskripsi"
             },
             {
-                data: "aksi"
+                data: "tanggal",
+                name: "created_at"
+            }
+            {
+                data: "action",
+                name: "action"
             }
         ]
+        console.log(ajax);
+        
     });
 
     function edit(e) {

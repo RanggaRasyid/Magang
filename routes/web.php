@@ -52,6 +52,7 @@ Route::prefix('mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group
 
     Route::prefix('/loogbook')->group(function() {
         route::get('/{id}', [App\Http\Controllers\LoogBookController::class, 'index'])->name('loogbook');
+        route::get('show/{id}', [App\Http\Controllers\LoogBookController::class, 'show'])->name('show.loogbook');
     });
 
     Route::prefix('/presensi')->group(function() {
