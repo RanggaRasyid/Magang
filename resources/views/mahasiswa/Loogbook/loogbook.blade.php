@@ -21,7 +21,7 @@
     <div class="col-md-2 col-12 mb-3 ps-5 d-flex justify-content-between">
     </div>
     <div class="col-md-2 col-12 text-end">
-        <button class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modalTambahMitra">Add Activity</button>
+        <button class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#tambahloogbook">Add Activity</button>
     </div>
 </div>
 <div class="col-xl-12">
@@ -29,7 +29,7 @@
         <div class="tab-content mt-4">
             <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
                 <div class="card-datatable table-responsive">
-                    <table class="table" id="table-loogbook">
+                    <table class="table" id="table-loogbook-mahasiswa">
                         <thead>
                             <tr>
                                 <th>NOMOR</th>
@@ -73,35 +73,9 @@
 <script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="../../app-assets/js/forms-extras.js"></script>
 <script>
-    // var jsonData = [{
-    //         "nomor": "1",
-    //         "title": "Editing Video",
-    //         "deskription": "Melakukan Editing Video",
-    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra'><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-    //     },
-    //     {
-    //         "nomor": "2",
-    //         "title": "Tidur",
-    //         "deskription": "Jadwal Kegiatan Sehari-hari yang Kreatif dari Bangun Tidur Sampai Tidur Lagi",
-    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-    //     },
-    //     {
-    //         "nomor": "3",
-    //        "title": "Melakukan Aktifitas biasa",
-    //         "deskription": "Melakukan Editing Video",
-    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light' data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-    //     },
-    //     {
-    //         "nomor": "4",
-    //         "title": "Editing Video",
-    //         "deskription": "Melakukan Editing Video",
-    //         "aksi": "<a class='btn-icon text-warning waves-effect waves-light'  data-bs-toggle='modal' data-bs-target='#modalTambahMitra''><i class='ti ti-edit'></i></a><a class='btn-icon text-danger waves-effect waves-light'><i class='ti ti-circle-x' data-bs-toggle='modal' data-bs-target='#modalalert'></i></a>",
-    //     }
-    // ];
 
-    var table = $('#table-loogbook').DataTable({
-        // "data": jsonData,
-        ajax: '{{ url("mahasiswa/loogbook/show/id")}}',
+    var table = $('#table-loogbook-mahasiswa').DataTable({
+        ajax: '{{ url("mahasiswa/loogbook/show/{id}")}}',
         serverSide: false,
         processing: true,
         deferRender: true,
@@ -111,58 +85,57 @@
                 data: "DT_RowIndex"
             },
             {
-                data: "title",
+                data: "nama",
                 name: "nama"
             },
             {
-                data: "deskription",
+                data: "deskripsi",
                 nama: "deskripsi"
             },
             {
-                data: "tanggal",
+                data: "created_at",
                 name: "created_at"
-            }
+            },
             {
                 data: "action",
                 name: "action"
             }
-        ]
-        console.log(ajax);
+        ]       
         
     });
 
-    function edit(e) {
-        let id = e.attr('data-id');
+    // function edit(e) {
+    //     let id = e.attr('data-id');
 
-        let action = `{{ url('sesuaikan') }}/${id}`;
-        var url = `{{ url('sesuaikan') }}/${id}`;
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function(response) {
-                $("#modalTambahMitraTitle").html("Edit Pengguna");
-                $("#modal-button").html("Update Data")
-                $('#modalTambahMitra form').attr('action', action);
-                $('#nama').val(response.nama);
-                $('#nohp').val(response.nohp);
-                $('#email').val(response.email);
-                $('#role').val(response.role).trigger('change');
+    //     let action = `{{ url('sesuaikan') }}/${id}`;
+    //     var url = `{{ url('sesuaikan') }}/${id}`;
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: url,
+    //         success: function(response) {
+    //             $("#modalTambahMitraTitle").html("Edit Pengguna");
+    //             $("#modal-button").html("Update Data")
+    //             $('#modalTambahMitra form').attr('action', action);
+    //             $('#nama').val(response.nama);
+    //             $('#nohp').val(response.nohp);
+    //             $('#email').val(response.email);
+    //             $('#role').val(response.role).trigger('change');
 
-                $('#modal-thn-akademik').modal('show');
-            }
-        });
-    }
+    //             $('#modal-thn-akademik').modal('show');
+    //         }
+    //     });
+    // }
 
-    $("#modalTambahMitra").on("hide.bs.modal", function() {
+    // $("#modalTambahMitra").on("hide.bs.modal", function() {
 
-        $("#modalTambahMitraTitle").html("Tambah Pengguna");
-        $("#modal-button").html("Simpan")
-        $('#modalTambahMitra form')[0].reset();
-        $('#modalTambahMitra form #role').val('').trigger('change');
-        $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
-        $('.invalid-feedback').removeClass('d-block');
-        $('.form-control').removeClass('is-invalid');
-    });
+    //     $("#modalTambahMitraTitle").html("Tambah Pengguna");
+    //     $("#modal-button").html("Simpan")
+    //     $('#modalTambahMitra form')[0].reset();
+    //     $('#modalTambahMitra form #role').val('').trigger('change');
+    //     $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
+    //     $('.invalid-feedback').removeClass('d-block');
+    //     $('.form-control').removeClass('is-invalid');
+    // });
 
     jQuery(function() {
         jQuery('.showSingle').click(function() {

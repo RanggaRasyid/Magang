@@ -106,7 +106,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="{{url('mahasiswa/loogbook', Auth::user()->nim)}}"  class="menu-link">
+              <a href="{{url('mahasiswa/loogbook')}}"  class="menu-link">
                 <i class="menu-icon tf-icons ti ti-file"></i>
                 <div data-i18n="Loogbook">Loogbook</div>
               </a>
