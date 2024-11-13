@@ -37,7 +37,9 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('/presensi')->group(function () {
             Route::get('/', [App\Http\Controllers\MasterPresensiController::class, 'index'])->name('master.presensi.index');
-            Route::post('/show/{id}', [App\Http\Controllers\MasterPresensiController::class, 'show'])->name('master.presensi.show');
+            Route::get('/show/{id}', [App\Http\Controllers\MasterPresensiController::class, 'show'])->name('master.presensi.show');
+            Route::get('/show-detail/{id}', [App\Http\Controllers\MasterPresensiController::class, 'showDetail'])->name('master.presensi.show.detail');
+            Route::get('/detail/{id}', [App\Http\Controllers\MasterPresensiController::class, 'detail'])->name('master.presensi.detail');
         });
     });
 });
@@ -57,7 +59,8 @@ Route::prefix('mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group
     });
 
     Route::prefix('/presensi')->group(function() {
-        route::get('/{id}', [App\Http\Controllers\PresensiController::class, 'index'])->name('presensi');
+        route::get('/', [App\Http\Controllers\PresensiController::class, 'index'])->name('presensi');
+        route::get('/show/{id}', [App\Http\Controllers\PresensiController::class, 'show'])->name('presensi.show');
     });
 
 });

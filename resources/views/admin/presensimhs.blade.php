@@ -23,15 +23,15 @@
             <div class="tab-content mt-4">
                 <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
                     <div class="card-datatable table-responsive">
-                        <table class="table" id="table-kelola-mitra1">
+                        <table class="table" id="table-master-presensi">
                             <thead>
                                 <tr>
-                                    <th>NOMOR</th>
+                                    <th>No</th>
                                     <th style="min-width: 125px;">Nama</th>
                                     <th>Universitas</th>
-                                    <th>Total Presensi</th>
+                                    {{-- <th>Total Presensi</th> --}}
                                     <th>Jurusan</th>
-                                    <th>Lihat Detail</th>
+                                    <th>Detail</th>
                                 </tr>
                             </thead>
                         </table>
@@ -47,62 +47,33 @@
 <script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="../../app-assets/js/forms-extras.js"></script>
 <script>
-    var jsonData = [
-        {
-            "nomor": "1",
-            "nama": "Abdul",
-            "univ": "Telkom University",
-            "total": "80%",
-            "jurusan" : "D3 RPLA",
-            "aksi": "<a class='btn-icon text-success waves-effect waves-light'><i class='tf-icons ti ti-file-invoice'></i></a>"
-        },
-        {
-            "nomor": "2",
-            "nama": "Haidar",
-            "univ": "Telkom University",
-            "total": "70%",
-            "jurusan" : "D3 RPLA",
-            "aksi": "<a class='btn-icon text-success waves-effect waves-light'><i class='tf-icons ti ti-file-invoice'></i></a>"
-        },
-        {
-            "nomor": "3",
-            "nama": "Abdul",
-            "univ": "Telkom University",
-            "total": "90%",
-            "jurusan" : "D3 RPLA",
-            "aksi": "<a class='btn-icon text-success waves-effect waves-light'><i class='tf-icons ti ti-file-invoice'></i></a>"
-        },
-        {
-            "nomor": "4",
-            "nama": "Abdul",
-            "univ": "Telkom University",
-            "total": "100%",
-            "jurusan" : "D3 RPLA",
-            "aksi": "<a class='btn-icon text-success waves-effect waves-light'><i class='tf-icons ti ti-file-invoice'></i></a>"
-        },
-        
-    ];
 
-    var table = $('#table-kelola-mitra1').DataTable({
-        "data": jsonData,
+    var table = $('#table-master-presensi').DataTable({
+        ajax: '{{ url("super-admin/presensi/show/{id}")}}',
+        serverSide: false,
+        processing: true,
+        deferRender: true,
+        type: 'GET',
+        destroy: true,
         columns: [{
-                data: "nomor"
+                data: "DT_RowIndex"
             },
             {
-                data: "nama"
+                data: "namamhs",
+                name: "namamhs"
             },
             {
-                data: "univ"
+                data: "namauniv",
+                name: "namauniv"
             },
             {
-                data: "total"
+                data: "jurusan",
+                name: "jurusan"
             },
             {
-                data: "jurusan"
+                data: "detail",
+                name: "detail"
             },
-            {
-                data: "aksi"
-            }
         ]
     });
 

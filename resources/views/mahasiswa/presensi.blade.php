@@ -108,14 +108,14 @@
             <div class="tab-content mt-4">
                 <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
                     <div class="card-datatable table-responsive">
-                        <table class="table" id="table-kelola-mitra1">
+                        <table class="table" id="table-presensi-mahasiswa">
                             <thead>
                                 <tr>
-                                    <th>NOMOR</th>
+                                    <th>NO</th>
+                                    <th>Date</th>
                                     <th style="min-width: 125px;">Chekin</th>
                                     <th>Checkout</th>
                                     <th>Status</th>
-                                    <th>Date</th>
                                 </tr>
                             </thead>
                         </table>
@@ -131,53 +131,33 @@
 <script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
 <script src="../../app-assets/js/forms-extras.js"></script>
 <script>
-    var jsonData = [{
-            "nomor": "1",
-            "checkin": "09.00",
-            "checkout": "17.00",
-            "status": "Hadir",
-            "date": "2022-01-01"
-        },
-        {
-            "nomor": "2",
-            "checkin": "09.00",
-            "checkout": "17.00",
-            "status": "Hadir",
-            "date" : "11-11-2024"
-        },
-        {
-            "nomor": "3",
-           "checkin": "09.00",
-            "checkout": "17.00",
-            "status": "Tidak Hadir",
-            "date" : "11-11-2024"
-        },
-        {
-            "nomor": "4",
-            "checkin": "09.30",
-            "checkout": "17.30",
-            "status": "Hadir",
-            "date" : "11-11-2024"
-        }
-    ];
-
-    var table = $('#table-kelola-mitra1').DataTable({
-        "data": jsonData,
+    // 
+    var table = $('#table-presensi-mahasiswa').DataTable({
+        ajax: '{{ url("mahasiswa/presensi/show/{id}")}}',
+        serverSide: false,
+        processing: true,
+        deferRender: true,
+        type: 'GET',
+        destroy: true,
         columns: [{
-                data: "nomor"
+                data: "DT_RowIndex"
             },
             {
-                data: "checkin"
+                data: "tgl",
+                name: "tgl"
             },
             {
-                data: "checkout"
+                data: "jammasuk",
+                name: "jammasuk"
             },
             {
-                data: "status"
+                data: "jamkeluar",
+                name: "jamkeluar"
             },
             {
-                data: "date"
-            }
+                data: "status",
+                name: "status"
+            },
         ]
     });
 

@@ -13,39 +13,34 @@
 
 @section('main')
 <div class="row">
-    <div class="col-md-8 col-12">
+    <div class="col-md-8 col-12 g-4">
         <h4 class="fw-bold text-sm"><span class="text-muted fw-light text-xs"></span>
-            Loogbook
+        Daftar Presensi Mahasiswa
         </h4>
     </div>
-    <div class="col-md-2 col-12 mb-3 ps-5 d-flex justify-content-between">
-    </div>
-    <div class="col-md-2 col-12 text-end">
-        <button class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal-loogbook">Add Activity</button>
-    </div>
-</div>
-<div class="col-xl-12">
-    <div class="nav-align-top">
-        <div class="tab-content mt-4">
-            <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
-                <div class="card-datatable table-responsive">
-                    <table class="table" id="table-loogbook-mahasiswa">
-                        <thead>
-                            <tr>
-                                <th style="max-width:30px">NO</th>
-                                <th style="min-width: 125px;">Title</th>
-                                <th>Deskription</th>
-                                <th>Created-At</th>
-                                <th>AKSI</th>
-                            </tr>
-                        </thead>
-                    </table>
+    <div class="col-xl-12">
+        <div class="nav-align-top">
+            <div class="tab-content mt-4">
+                <div class="tab-pane fade show active" id="navs-pills-justified-users" role="tabpanel">
+                    <div class="card-datatable table-responsive">
+                        <table class="table" id="table-detail-presensimhs">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th style="min-width: 125px;">Nama</th>
+                                    <th>Universitas</th>
+                                    {{-- <th>Total Presensi</th> --}}
+                                    <th>Jurusan</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@include('mahasiswa.loogbook.modal')
 @endsection
 
 @section('page_script')
@@ -53,8 +48,8 @@
 <script src="../../app-assets/js/forms-extras.js"></script>
 <script>
 
-    var table = $('#table-loogbook-mahasiswa').DataTable({
-        ajax: '{{ url("mahasiswa/loogbook/show/{id}")}}',
+    var table = $('#table-detail-presensimhs').DataTable({
+        ajax: '{{ url("super-admin/presensi/detail/{id}")}}',
         serverSide: false,
         processing: true,
         deferRender: true,
@@ -64,28 +59,30 @@
                 data: "DT_RowIndex"
             },
             {
-                data: "nama",
-                name: "nama"
+                data: "nimmhs.namamhs",
+                name: "namamhs"
             },
             {
-                data: "deskripsi",
-                name: "deskripsi"
+                data: "nimmhs.namauniv",
+                name: "namauniv"
             },
             {
-                data: "created_at",
-                name: "created_at",
+                data: "jamkeluar",
+                name: "jamkeluar"
             },
             {
-                data: "action",
-                name: "action"
-            }
-        ]       
-        
+                data: "nimmhs.jurusan",
+                name: "jurusan"
+            },
+            {
+                data: "detail",
+                name: "detail"
+            },
+        ]
     });
 
     // function edit(e) {
     //     let id = e.attr('data-id');
-
     //     let action = `{{ url('sesuaikan') }}/${id}`;
     //     var url = `{{ url('sesuaikan') }}/${id}`;
     //     $.ajax({
@@ -105,16 +102,16 @@
     //     });
     // }
 
-    // $("#modalTambahMitra").on("hide.bs.modal", function() {
+    $("#modalTambahMitra").on("hide.bs.modal", function() {
 
-    //     $("#modalTambahMitraTitle").html("Tambah Pengguna");
-    //     $("#modal-button").html("Simpan")
-    //     $('#modalTambahMitra form')[0].reset();
-    //     $('#modalTambahMitra form #role').val('').trigger('change');
-    //     $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
-    //     $('.invalid-feedback').removeClass('d-block');
-    //     $('.form-control').removeClass('is-invalid');
-    // });
+        $("#modalTambahMitraTitle").html("Tambah Pengguna");
+        $("#modal-button").html("Simpan")
+        $('#modalTambahMitra form')[0].reset();
+        $('#modalTambahMitra form #role').val('').trigger('change');
+        $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
+        $('.invalid-feedback').removeClass('d-block');
+        $('.form-control').removeClass('is-invalid');
+    });
 
     jQuery(function() {
         jQuery('.showSingle').click(function() {

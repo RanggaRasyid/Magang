@@ -112,7 +112,7 @@
               </a>
             </li>   
             <li class="menu-item">
-              <a href="{{url('mahasiswa/presensi', Auth::user()->nim)}}" class="menu-link">
+              <a href="{{url('mahasiswa/presensi')}}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-clock"></i>
                 <div data-i18n="Presensi">Presensi</div>
               </a>
