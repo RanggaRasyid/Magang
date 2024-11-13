@@ -10,7 +10,7 @@
             document.write(new Date().getFullYear());
           </script>
           {{-- , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="fw-semibold">Fauzi Aulia</a> --}}
-          , made with ❤️ by <a href="#" target="_blank" class="fw-semibold">Jabar Siber Hoax</a>
+          , made with by <a href="#" target="_blank" class="fw-semibold">Jabar Siber Hoax</a>
         </div>
       </div>
     </div>
