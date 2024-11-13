@@ -1,7 +1,7 @@
 @extends('mahasiswa.template')
 
 @section('page_style')
-<link rel="stylesheet" href="../../app-assets/vendor/libs/sweetalert2/sweetalert2.css" />
+<link rel="stylesheet" href="{{url('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <style>
     .tooltip-inner {
         max-width: 210px;
@@ -49,8 +49,8 @@
 @endsection
 
 @section('page_script')
-<script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
-<script src="../../app-assets/js/forms-extras.js"></script>
+<script src="{{url('assets/vendor/libs/jquery-repeater/jquery-repeater.js')}}"></script>
+<script src="{{url('assets/js/forms-extras.js')}}"></script>
 <script>
 
     var table = $('#table-loogbook-mahasiswa').DataTable({
@@ -124,6 +124,6 @@
     });
 </script>
 
-<script src="../../app-assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
-<script src="../../app-assets/js/extended-ui-sweetalert2.js"></script>
+<script src="{{url('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{url('assets/js/extended-ui-sweetalert2.js')}}"></script>
 @endsection

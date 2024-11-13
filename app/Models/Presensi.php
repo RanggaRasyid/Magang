@@ -24,6 +24,6 @@ class Presensi extends Model
     ];
     public function nimmhs()
     {
-        return $this->belongsTo(Mahasiswa::class, 'nim');
+        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
     }
 }

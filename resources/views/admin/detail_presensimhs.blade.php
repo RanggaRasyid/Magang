@@ -1,7 +1,7 @@
 @extends('mahasiswa.template')
 
 @section('page_style')
-<link rel="stylesheet" href="../../app-assets/vendor/libs/sweetalert2/sweetalert2.css" />
+<link rel="stylesheet" href="{{url('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <style>
     .tooltip-inner {
         max-width: 210px;
@@ -14,8 +14,11 @@
 @section('main')
 <div class="row">
     <div class="col-md-8 col-12 g-4">
+        <button class="btn btn-outline-success my-2 waves-effect p-3 mb-4" type="button" id="back" style="width: 15%; height:12%;">
+            <i class="bi bi-arrow-left text-success" style="font-size: medium;"> Kembali </i>
+        </button>
         <h4 class="fw-bold text-sm"><span class="text-muted fw-light text-xs"></span>
-        Daftar Presensi Mahasiswa
+        Daftar Presensi {{ $presensi->nimmhs->namamhs ?? '' }}
         </h4>
     </div>
     <div class="col-xl-12">
@@ -26,12 +29,11 @@
                         <table class="table" id="table-detail-presensimhs">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th style="min-width: 125px;">Nama</th>
-                                    <th>Universitas</th>
-                                    {{-- <th>Total Presensi</th> --}}
-                                    <th>Jurusan</th>
-                                    <th>Detail</th>
+                                    <th>NO</th>
+                                    <th>Date</th>
+                                    <th style="min-width: 125px;">Chekin</th>
+                                    <th>nim</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                         </table>
@@ -44,8 +46,8 @@
 @endsection
 
 @section('page_script')
-<script src="../../app-assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
-<script src="../../app-assets/js/forms-extras.js"></script>
+<script src="{{url('assets/vendor/libs/jquery-repeater/jquery-repeater.js')}}"></script>
+<script src="{{url('assets/js/forms-extras.js')}}"></script>
 <script>
 
     var table = $('#table-detail-presensimhs').DataTable({
@@ -59,60 +61,23 @@
                 data: "DT_RowIndex"
             },
             {
-                data: "nimmhs.namamhs",
-                name: "namamhs"
+                data: "tgl",
+                name: "tgl"
             },
             {
-                data: "nimmhs.namauniv",
-                name: "namauniv"
+                data: "jammasuk",
+                name: "jammasuk"
             },
             {
-                data: "jamkeluar",
-                name: "jamkeluar"
+                data: "nimmhs.nim",
+                name: "nim"
             },
             {
-                data: "nimmhs.jurusan",
-                name: "jurusan"
-            },
-            {
-                data: "detail",
-                name: "detail"
+                data: "status",
+                name: "status"
             },
         ]
     });
-
-    // function edit(e) {
-    //     let id = e.attr('data-id');
-    //     let action = `{{ url('sesuaikan') }}/${id}`;
-    //     var url = `{{ url('sesuaikan') }}/${id}`;
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: url,
-    //         success: function(response) {
-    //             $("#modalTambahMitraTitle").html("Edit Pengguna");
-    //             $("#modal-button").html("Update Data")
-    //             $('#modalTambahMitra form').attr('action', action);
-    //             $('#nama').val(response.nama);
-    //             $('#nohp').val(response.nohp);
-    //             $('#email').val(response.email);
-    //             $('#role').val(response.role).trigger('change');
-
-    //             $('#modal-thn-akademik').modal('show');
-    //         }
-    //     });
-    // }
-
-    $("#modalTambahMitra").on("hide.bs.modal", function() {
-
-        $("#modalTambahMitraTitle").html("Tambah Pengguna");
-        $("#modal-button").html("Simpan")
-        $('#modalTambahMitra form')[0].reset();
-        $('#modalTambahMitra form #role').val('').trigger('change');
-        $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
-        $('.invalid-feedback').removeClass('d-block');
-        $('.form-control').removeClass('is-invalid');
-    });
-
     jQuery(function() {
         jQuery('.showSingle').click(function() {
             jQuery('.targetDiv').hide('.cnt');
@@ -121,6 +86,6 @@
     });
 </script>
 
-<script src="../../app-assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
-<script src="../../app-assets/js/extended-ui-sweetalert2.js"></script>
+<script src="{{url('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="{{url('assets/js/extended-ui-sweetalert2.js')}}"></script>
 @endsection
