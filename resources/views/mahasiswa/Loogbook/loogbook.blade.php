@@ -36,6 +36,7 @@
                                 <th style="min-width: 125px;">Title</th>
                                 <th>Deskription</th>
                                 <th>Created-At</th>
+                                <th>Gambar</th>
                                 <th>AKSI</th>
                             </tr>
                         </thead>
@@ -74,6 +75,10 @@
             {
                 data: "created_at",
                 name: "created_at",
+            },
+            {
+                data: "picture",
+                name: "picture",
             },
             {
                 data: "action",

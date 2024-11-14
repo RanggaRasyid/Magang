@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="modal-title">Tambah Aktifitas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="default-form" method="POST" action="{{ route('store.loogbook') }}">
+            <form class="default-form" method="POST" enctype="multipart/form-data" action="{{ route('store.loogbook') }}">
                 @csrf
                 <div class="modal-body">
 
@@ -22,6 +22,13 @@
                         <div class="col mb-2 form-input">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Membuat Konen Instagram"></textarea>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-2 form-input">
+                            <label for="file" class="form-label">masukkan gambar</label>
+                            <input class="form-control" name="picture" type="file" id="picture">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

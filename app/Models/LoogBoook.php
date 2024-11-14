@@ -26,7 +26,8 @@ class LoogBoook extends Model
         'id_loogbook',
         'nim',
         'nama',
-        'deskripsi'
+        'deskripsi',
+        'picture'
     ];
 
     public function nimmhs()
