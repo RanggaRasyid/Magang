@@ -1,6 +1,7 @@
 @extends('mahasiswa.template')
 
 @section('page_style')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" href="{{url('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 <style>
     .tooltip-inner {
@@ -88,38 +89,35 @@
         
     });
 
-    // function edit(e) {
-    //     let id = e.attr('data-id');
+    function edit(e) {
+        let id = e.attr('data-id');
+        let action = `{{ url('mahasiswa/loogbook/update') }}/${id}`;
+        var url = `{{ url('mahasiswa/loogbook/edit') }}/${id}`;
 
-    //     let action = `{{ url('sesuaikan') }}/${id}`;
-    //     var url = `{{ url('sesuaikan') }}/${id}`;
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: url,
-    //         success: function(response) {
-    //             $("#modalTambahMitraTitle").html("Edit Pengguna");
-    //             $("#modal-button").html("Update Data")
-    //             $('#modalTambahMitra form').attr('action', action);
-    //             $('#nama').val(response.nama);
-    //             $('#nohp').val(response.nohp);
-    //             $('#email').val(response.email);
-    //             $('#role').val(response.role).trigger('change');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(response) {
+                $("#modal-title").html("Edit Aktifitas");
+                $("#modal-button").html("Update Data");
+                $('#modal-loogbook form').attr('action', action);
+                $('#nama').val(response.nama);
+                $('#deskripsi').val(response.deskripsi);
+                $('#modal-loogbook').modal('show');
+            }
+        });
+    }
 
-    //             $('#modal-thn-akademik').modal('show');
-    //         }
-    //     });
-    // }
+    $("#modal-loogbook").on("hide.bs.modal", function() {
 
-    // $("#modalTambahMitra").on("hide.bs.modal", function() {
-
-    //     $("#modalTambahMitraTitle").html("Tambah Pengguna");
-    //     $("#modal-button").html("Simpan")
-    //     $('#modalTambahMitra form')[0].reset();
-    //     $('#modalTambahMitra form #role').val('').trigger('change');
-    //     $('#modalTambahMitra form').attr('action', "{{ url('sesuaikan') }}");
-    //     $('.invalid-feedback').removeClass('d-block');
-    //     $('.form-control').removeClass('is-invalid');
-    // });
+        $("#modal-title").html("Tambah Akifitas");
+        $("#modal-button").html("Simpan")
+        $('#modal-loogbook form')[0].reset();
+        $('#modal-loogbook form #role').val('').trigger('change');
+        $('#modal-loogbook form').attr('action', "{{ url('mahasiswa/loogbook/store') }}");
+        $('.invalid-feedback').removeClass('d-block');
+        $('.form-control').removeClass('is-invalid');
+    });
 
     jQuery(function() {
         jQuery('.showSingle').click(function() {

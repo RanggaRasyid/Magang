@@ -56,6 +56,9 @@ Route::prefix('mahasiswa')->middleware('auth', 'can:read.only.mahasiswa')->group
         route::get('/', [App\Http\Controllers\LoogBookController::class, 'index'])->name('loogbook');
         route::get('/show/{id}', [App\Http\Controllers\LoogBookController::class, 'show'])->name('show.loogbook');
         route::post('/store', [App\Http\Controllers\LoogBookController::class, 'store'])->name('store.loogbook');
+        route::get('/edit/{id}', [App\Http\Controllers\LoogBookController::class, 'edit'])->name('edit.loogbook');
+        route::post('/update/{id}', [App\Http\Controllers\LoogBookController::class, 'update'])->name('update.loogbook');
+        route::delete('/destroy/{id}', [App\Http\Controllers\LoogBookController::class, 'destroy'])->name('destroy.loogbook');
     });
 
     Route::prefix('/presensi')->group(function() {

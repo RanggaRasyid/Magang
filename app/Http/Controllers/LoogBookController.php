@@ -38,13 +38,13 @@ class LoogBookController extends Controller
                 $icon = ($row->status) ? "ti-circle-x" : "ti-circle-check";
                 $color = ($row->status) ? "danger" : "success";
 
-                $btn = "<a data-bs-toggle='modal' data-id='{$row->nim}' onclick=edit($(this)) class='btn-icon text-warning waves-effect waves-light'><i class='tf-icons ti ti-edit'></i></a>";
+                $btn = "<a data-bs-toggle='modal' data-id='{$row->id_loogbook}' onclick=edit($(this)) class='btn-icon text-warning waves-effect waves-light'><i class='tf-icons ti ti-edit'></i></a>
+                <a data-id='{$row->id_loogbook}' data-url='loogbook/destroy' class='btn-icon delete-data waves-effect waves-light'><i class='ti ti-trash fa-lg' style='color:red'></i></a>";
                 return $btn;
             })
-            ->rawColumns(['action', 'picture']) // Tambahkan 'picture' ke rawColumns agar HTML <img> dieksekusi
+            ->rawColumns(['action', 'picture']) 
             ->make(true);
     }
-
 
     public function store(LoogbookRequest $request) {
         try {
@@ -70,6 +70,62 @@ class LoogBookController extends Controller
                 'modal' => '#modal-loogbook',
                 'table' => '#table-loogbook-mahasiswa'
             ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function edit(String $id) {
+
+        $loogbook = LoogBoook::Where('id_loogbook', $id)->first();
+        return $loogbook;
+        
+    }
+
+    public function update(LoogbookRequest $request, $id){
+        try {
+            $file = null; 
+            if ($request->file('picture')) {
+                $file = Storage::put('public/loogbook' , $request->file('picture'));
+            }
+            $loogbook = LoogBoook::Where('id_loogbook', $id)->first();
+            $loogbook->nama = $request->nama;
+            $loogbook->deskripsi = $request->deskripsi;
+            $loogbook->picture = $file;
+            $loogbook->save();
+            return response()->json([
+                'error' => false,
+                'message' => 'Loogbook successfully Updated!',
+                'modal' => '#modal-loogbook',
+                'table' => '#table-loogbook-mahasiswa'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function destroy($id) {
+        try {
+            $loogbook = LoogBoook::Where('id_loogbook', $id)->first();
+            if ($loogbook) {
+                $loogbook->delete();
+                return response()->json([
+                    'error' => false,
+                    'message' => 'Loogbook successfully deleted!',
+                    'table' => '#table-loogbook-mahasiswa'
+                ]);
+            } else {
+                return response()->json([
+                    'error' => true,
+                    'message' => 'Loogbook not found!',
+                ]);
+            }
         } catch (Exception $e) {
             return response()->json([
                 'error' => true,
