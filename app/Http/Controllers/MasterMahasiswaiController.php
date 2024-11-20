@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddMahasiswaRequest;
 use App\Models\Mahasiswa;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -39,8 +43,36 @@ class MasterMahasiswaiController extends Controller
         ->make(true);
     }
 
-    public function store(){
-        //
+    public function store(AddMahasiswaRequest $request){
+        try{
+            $mahasiswa = Mahasiswa::create([
+                'nim' => $request->nim,
+                'namamhs' => $request->nama,
+                'emailmhs' => $request->email,
+                'jurusan' => $request->jurusan,
+                'namauniv' => $request->univ,
+                'status' => 1
+            ]);
+            $user = User::create([
+                'nim' => $request->nim,
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            $user->assignRole('mahasiswa');
+            return response()->json([
+                'error' => false,
+                'message' => 'Mahasiswa successfully Created!',
+                'modal' => '#modal-master-mahasiswa',
+                'table' => '#table-master-mahasiswa'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
+        
     }
 
     public function status(String $id)
@@ -77,26 +109,27 @@ class MasterMahasiswaiController extends Controller
      */
     public function update( $request, string $id)
     {
-        // try {
-        //     $univ = Mahasiswa::where('nim', $id)->first();
+        try {
+            $user = User::where('nim', $id)->first();
+            $mahasiswa = Mahasiswa::where('nim', $id)->first();
+            $user == $mahasiswa ;
+            $mahasiswa->namamhs = $request->namamhs;
+            $mahasiswa->jalan = $request->jalan;
+            $mahasiswa->kota = $request->kota;
+            $mahasiswa->telp = $request->telp;
+            $mahasiswa->save();
 
-        //     $univ->namauniv = $request->namauniv;
-        //     $univ->jalan = $request->jalan;
-        //     $univ->kota = $request->kota;
-        //     $univ->telp = $request->telp;
-        //     $univ->save();
-
-        //     return response()->json([
-        //         'error' => false,
-        //         'message' => 'Universitas successfully Updated!',
-        //         'modal' => '#modal-universitas',
-        //         'table' => '#table-master-univ'
-        //     ]);
-        // } catch (Exception $e) {
-        //     return response()->json([
-        //         'error' => true,
-        //         'message' => $e->getMessage(),
-        //     ]);
-        // }
+            return response()->json([
+                'error' => false,
+                'message' => 'Universitas successfully Updated!',
+                'modal' => '#modal-universitas',
+                'table' => '#table-master-univ'
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

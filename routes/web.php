@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 //landing-page
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('landing-page')->middleware('guest');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('guest');
-
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes();
 
@@ -30,9 +27,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [App\Http\Controllers\MasterMahasiswaiController::class, 'index'])->name('master.index');
             Route::get('/show', [App\Http\Controllers\MasterMahasiswaiController::class, 'show'])->name('master.show');
             Route::post('/status/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'status'])->name('master.status');
-            // Route::get('/edit/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'edit'])->name('master.edit');
-            // Route::post('/update/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'update'])->name('master.update');
-            // Route::post('/store/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'store'])->name('master.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'edit'])->name('master.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\MasterMahasiswaiController::class, 'update'])->name('master.update');
+            Route::post('/store', [App\Http\Controllers\MasterMahasiswaiController::class, 'store'])->name('master.store');
 
         });
         Route::prefix('/presensi')->group(function () {

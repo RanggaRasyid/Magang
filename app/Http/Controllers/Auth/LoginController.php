@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,9 +42,9 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->hasRole('superadmin')) {
-            return view('admin.admin_dashboard');
+            return redirect('super-admin/');
         } else {
-            return view('mahasiswa.dashboard');
+            return redirect('mahasiswa/');
         }
         // return view('layouts.dashboard');
     }
